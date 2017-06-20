@@ -4,6 +4,8 @@ const url = require('url');
 
 const express = require('express');
 
+// TODO: investigate replacement sesion lib as the connect.session() MemoryStore
+// is not designed for prod use and will leak memory not scaling beyond a single process
 const session = require('express-session');
 
 const xero = require('xero-node');
@@ -12,8 +14,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'keyboard cat';
-
-app.use(session({ secret: SESSION_SECRET }));
 
 let xeroClient;
 let eventReceiver;
@@ -113,6 +113,8 @@ function handleErr(err, req, res, returnTo) {
         res.redirect('/error');
     }
 }
+
+app.use(session({ secret: SESSION_SECRET }));
 
 app.get('/access', (req, res) => {
     const xeroClient = getXeroClient();
