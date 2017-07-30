@@ -9,8 +9,8 @@
   "author": "Reuben Berghan",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3",
-    "express-session": "^1.15.3",
-    "xero-node": "^2.1.5"
+    "express": "4.15.3",
+    "express-session": "1.15.3",
+    "xero-node": "2.1.5"
   }
 }
